@@ -120,7 +120,7 @@ const TablaProyectos = ({ data = [], search = "" }) => {
                     <td className="w-48">
                       <div className="w-full bg-white/10 h-2 rounded-full">
                         <div
-                          className="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500"
+                          className="h-2 rounded-full bg-linear-to-r from-cyan-400 to-purple-500"
                           style={{ width: `${item.progress}%` }}
                           title={`Etapa actual: ${item.stage ?? "-"}`}
                         />

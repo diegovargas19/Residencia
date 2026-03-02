@@ -33,7 +33,7 @@ const Layout = () => {
     <div className="min-h-screen flex flex-col bg-[#070f1f] text-white">
       {/* HEADER */}
       <header className="w-full bg-[#070f1f] border-b border-white/10 sticky top-0 z-50 backdrop-blur">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-10">
+        <div className="max-w-400 mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div className="flex items-center gap-4">
@@ -96,7 +96,7 @@ const Layout = () => {
         {/* MOBILE MENU */}
         {menuOpen && (
           <div className="md:hidden border-t border-white/10 bg-[#070f1f]">
-            <nav className="max-w-[1600px] mx-auto px-6 lg:px-10 py-3 space-y-1 text-sm">
+            <nav className="max-w-400 mx-auto px-6 lg:px-10 py-3 space-y-1 text-sm">
               {navItems.map((item) => (
                 <NavLink
                   key={item.to}
