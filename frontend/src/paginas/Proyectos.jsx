@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { proyectos as data } from "../data/Proyectos";
 import TablaProyectos from "../components/tablas/TablaProyectos";
+import NuevoProyectoModal from "../components/modales/NuevoProyectoModal";
 
 const Proyectos = () => {
   const [search, setSearch] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className="p-6">
@@ -12,6 +14,7 @@ const Proyectos = () => {
         <button
           type="button"
           className="bg-red-800 hover:bg-red-700 text-white font-medium px-4 py-2 rounded-lg transition"
+          onClick={() => setModalOpen(true)}
         >
           + Nuevo proyecto
         </button>
@@ -45,6 +48,8 @@ const Proyectos = () => {
         {/* Tabla + lógica de paginación */}
         <TablaProyectos key={search} data={data} search={search} />
       </div>
+
+      <NuevoProyectoModal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)} />
     </div>
   );
 };

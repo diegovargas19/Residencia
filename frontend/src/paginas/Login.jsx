@@ -1,6 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/app");
+  };
+
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-[#070f1f] overflow-hidden">
 
@@ -68,8 +77,7 @@ const Login = () => {
               Ingresa tus credenciales para acceder al sistema
             </p>
 
-            <form className="space-y-5">
-
+           <form className="space-y-5" onSubmit={handleSubmit}>
               {/* Email */}
               <div>
                 <label className="text-sm text-gray-600">
@@ -81,7 +89,6 @@ const Login = () => {
                   className="w-full mt-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
-
               {/* Password */}
               <div>
                 <label className="text-sm text-gray-600">
@@ -93,7 +100,6 @@ const Login = () => {
                   className="w-full mt-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
-
               {/* Button */}
               <button
                 type="submit"
@@ -101,7 +107,6 @@ const Login = () => {
               >
                 Iniciar sesión
               </button>
-
             </form>
 
           </div>

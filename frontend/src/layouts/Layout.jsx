@@ -126,77 +126,10 @@ const Layout = () => {
         <Outlet />
       </main>
 
-      {/* FOOTER */}
-      <footer className="bg-[#070f1f] border-t border-white/10">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-10 py-14">
-          <div className="grid md:grid-cols-4 gap-10">
-            {/* INFO */}
-            <div>
-              <div className="flex items-center gap-3">
-                <img src="/img/tecmm.png" alt="Logo TECMM" className="w-10" />
-                <span className="font-semibold text-white text-lg">TECMM</span>
-              </div>
-
-              <p className="text-sm text-gray-400 mt-4 leading-relaxed">
-                Plataforma académica para gestión de proyectos de investigación,
-                encuestas y análisis de resultados institucionales.
-              </p>
-            </div>
-
-            {/* NAV */}
-            <div>
-              <h4 className="font-semibold text-white mb-4">Navegación</h4>
-
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <Link to="/app">Inicio</Link>
-                </li>
-                <li>
-                  <Link to="/app/proyectos">Proyectos</Link>
-                </li>
-                <li>
-                  <Link to="/app/encuestas">Encuestas</Link>
-                </li>
-                <li>
-                  <Link to="/app/administracion">Administración</Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* SISTEMA */}
-            <div>
-              <h4 className="font-semibold text-white mb-4">Plataforma</h4>
-
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <Link to="/app/dashboard">Dashboard</Link>
-                </li>
-                <li>
-                  <Link to="/app/reportes">Reportes</Link>
-                </li>
-                <li>Documentación</li>
-                <li>Soporte técnico</li>
-              </ul>
-            </div>
-
-            {/* CONTACTO */}
-            <div>
-              <h4 className="font-semibold text-white mb-4">Contacto</h4>
-
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>soporte@tecmm.edu</li>
-                <li>+52 33 0000 0000</li>
-                <li>Zapopan, Jalisco</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      <div className="border-t border-white/10 mt-2 mb-6 pt-6 text-center text-sm text-gray-500">
+      <footer className="border-t border-white/10 mt-2 mb-6 pt-6 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} TECMM — Sistema de Proyectos y Encuestas
         Académicas
-      </div>
+      </footer>
     </div>
   );
 };

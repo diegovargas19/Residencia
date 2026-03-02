@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PAGE_SIZE = 10;
 
@@ -18,6 +19,8 @@ const priorityStyle = {
 
 const TablaProyectos = ({ data = [], search = "" }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [menuOpen, setMenuOpen] = useState(null);
+  const navigate = useNavigate();
 
   const filteredData = useMemo(() => {
     const term = search.trim().toLowerCase();
@@ -49,6 +52,14 @@ const TablaProyectos = ({ data = [], search = "" }) => {
 
   const goPrev = () => setCurrentPage((p) => Math.max(1, p - 1));
   const goNext = () => setCurrentPage((p) => Math.min(totalPages, p + 1));
+
+  React.useEffect(() => {
+    const handleClick = () => setMenuOpen(null);
+    if (menuOpen !== null) {
+      window.addEventListener("click", handleClick);
+      return () => window.removeEventListener("click", handleClick);
+    }
+  }, [menuOpen]);
 
   return (
     <>
@@ -119,7 +130,8 @@ const TablaProyectos = ({ data = [], search = "" }) => {
                     <td>
                       <span
                         className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          statusStyle[item.status] ?? "bg-white/10 text-gray-300"
+                          statusStyle[item.status] ??
+                          "bg-white/10 text-gray-300"
                         }`}
                       >
                         {item.status}
@@ -136,8 +148,45 @@ const TablaProyectos = ({ data = [], search = "" }) => {
 
                     <td className="text-gray-400">{item.deadline}</td>
 
-                    <td className="text-gray-400 cursor-pointer hover:text-white">
-                      ⋯
+                    <td className="relative">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setMenuOpen(
+                            menuOpen === globalIndex ? null : globalIndex
+                          );
+                        }}
+                        className="flex items-center justify-center w-7 h-7 rounded-full bg-[#1e293b] hover:bg-[#334155] text-lg text-gray-300 hover:text-white transition border border-white/10"
+                      >
+                        <span style={{ fontSize: 18, fontWeight: "bold" }}>
+                          ⋯
+                        </span>
+                      </button>
+
+                      {menuOpen === globalIndex && (
+                        <div
+                          className="absolute right-0 mt-1 w-28 bg-[#0d1b34] border border-white/10 rounded-md shadow-lg z-10"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <button
+                            onClick={() =>
+                              navigate(`/app/proyectos/${globalIndex}`)
+                            }
+                            className="w-full text-left px-3 py-1 hover:bg-[#122044] text-white rounded-t-md text-sm"
+                          >
+                            Ver
+                          </button>
+
+                          <button className="w-full text-left px-3 py-1 hover:bg-[#122044] text-white text-sm">
+                            Editar
+                          </button>
+
+                          <button className="w-full text-left px-3 py-1 hover:bg-red-900 text-red-400 rounded-b-md text-sm">
+                            Eliminar
+                          </button>
+                        </div>
+                      )}
                     </td>
                   </tr>
                 );
@@ -169,7 +218,9 @@ const TablaProyectos = ({ data = [], search = "" }) => {
         <span>
           {filteredData.length === 0
             ? "Mostrando 0 proyectos"
-            : `Mostrando ${startIndex + 1}–${endIndex} de ${filteredData.length} proyectos (Página ${safePage} de ${totalPages})`}
+            : `Mostrando ${startIndex + 1}–${endIndex} de ${
+                filteredData.length
+              } proyectos (Página ${safePage} de ${totalPages})`}
         </span>
       </div>
     </>
